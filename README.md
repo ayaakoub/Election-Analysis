@@ -1,37 +1,36 @@
-# Election-Analysis
-Using PyPoll to analyze poll data
-Use your repository README to write your analysis of Deliverables 1 and 2. The analysis should contain the following:
+# Election Analysis using PyPoll
 
-Overview of Election Audit: Explain the purpose of this election audit analysis.
+## Overview of Election Audit
+This project revolves around helping Tom, a Colorado Board of Elections employee, with an election audit to determine the total number of votes, the candidates and the numbers of votes they each received, and determine the winning candidate. Automating this task in Python for this congressional election audit can help the board for senatorial election audits and even local election audits in the future. 
 
-Election-Audit Results: Using a bulleted list, address the following election outcomes. Use images or examples of your code as support where necessary.
+## Election Audit Results
+Using the data provided for the congressional election in Colorado there were three candidates:
+- Charles Casper Stockham
+- Diana DeGette
+- Raymon Anthony Doane
+The overall winner is **Diana Degette**. As shown below she had the majority of the votes (73.8%)
 
-How many votes were cast in this congressional election?
-Provide a breakdown of the number of votes and the percentage of total votes for each county in the precinct.
-Which county had the largest number of votes?
-Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
-Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
-Election-Audit Summary: In a summary statement, provide a business proposal to the election commission on how this script can be used—with some modifications—for any election. Give at least two examples of how this script can be modified to be used for other elections.
+![Overall Vote Outcome](https://github.com/ayaakoub/Election-Analysis/blob/main/Resources/Candidates_Votes.PNG)
 
-Deliverable 3 Requirements
-Structure, Organization, and Formatting (6 points)
-The written analysis has the following structure, organization, and formatting:
+There were a total of three counties:
+- Jefferson 
+- Denever 
+- Arapahoe
+The total voters from the three counties were 369,711 votes with <ins>Denver</ins> having the largest turnout (82.8% of voters). Below is a breakdown of the total number of voters by county.
 
-There is a title, and there are multiple sections. (2 pt)
+![Overall County Outcome](https://github.com/ayaakoub/Election-Analysis/blob/main/Resources/County_Votes.PNG)
 
-Each section has a heading. (2 pt)
+## Election Audit Summary 
 
-Links to images are working, and code is formatted and displayed correctly. (2 pt)
+The python PyPoll module is versatile and can be used by the election comission for any election audit. However a few things must be taken into account:
+- The python module assume the county name is in the second column and the candidate is in the third column of the CSV file. If that is not the case then the for loops must be adjusted to reflect the change. The following two lines must be adjusted to have the number in the brackets = (the column number - 1). That's because the CSV column index starts at 0 rather than 1. 
+  -         candidate_name = row[2]
 
-Analysis (14 points)
-The written analysis has the following:
+            county_name = row[1]
 
-Overview of Election Audit
+- The other line to keep in mind is where the CSV file is kept as the path is extremly important in accessing the data. Currently the file should be in the same parent folder as the python file as the following code indicates. It should be within a folder called 'Resources' if the folder changes then the line must change accordingly. This also applies to the output file. If the election commission would like to change the output file folder the 'analysis' folder can be renamed to something else and will have to be reflected in the code accordingly.
+  -         file_to_load = os.path.join("Resources", "election_results.csv")
+  
+            file_to_save = os.path.join("analysis", "election_analysis.txt")
 
-The purpose of this election analysis audit is well defined. (3 pt)
-Election Audit Results
 
-There is a bulleted list where each election outcome is addressed. (7 pt)
-Election Audit Summary
-
-There is a statement to the election commission that explores how this script can be used for any election, with two examples for modifying the script. (4 pt)
